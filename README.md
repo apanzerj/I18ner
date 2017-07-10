@@ -1,28 +1,17 @@
 # I18ner
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/I18ner`. To experiment with that code, run `bin/console` for an interactive prompt.
+Turns en.yml into a list of strings with keys:
 
-TODO: Delete this and the text above, and describe your gem
+en.foo.bar => "Hello FooBar"
+
 
 ## Installation
 
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'I18ner'
-```
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install I18ner
+Clone and rake install
 
 ## Usage
 
-TODO: Write usage instructions here
+  $ 18n [ rails_project_path ]
 
 ## Development
 
@@ -38,4 +27,3 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/[USERN
 ## License
 
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
-
