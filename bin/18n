@@ -5,4 +5,6 @@ require "I18ner"
 
 project = ARGV.pop
 project ||= `pwd`.chomp
-I18ner::Base.new(project).run
+temp = I18ner::Base.new(project)
+temp.run
+temp.to_s

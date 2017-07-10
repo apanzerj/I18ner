@@ -1,5 +1,6 @@
 require "I18ner/version"
 require "yaml"
+
 module I18ner
   class Base
     attr_reader :yml_file
@@ -7,14 +8,22 @@ module I18ner
 
     def initialize(project)
       @project = "#{project}/config/locales/en.yml"
-      puts @project
-      puts project
       @items = []
     end
 
     def run
-      make_keys(YAML.load(File.read(@project)))
+      make_keys(content)
       @items.flatten!.sort!
+    end
+
+    def content
+      YAML.load(File.read(@project))
+    end
+
+    def to_s
+      @items.each do |m|
+        puts m
+      end
     end
 
     private
@@ -25,16 +34,10 @@ module I18ner
         scope = key
 
         if value.is_a?(String)
-          if i==0
-            @items << [key]
-            puts "#{key} => #{value}"
-          else
-            @items << ["#{base}.#{key}"]
-            puts "#{base}.#{key} => #{value}" if i != 0
-          end
-        elsif value.is_a?(Hash)
-          new_base = i==0 ? base : base+".#{key}"
-          make_keys(value, i+1, new_base)
+          base_pair = i == 0 ? key : "#{base}.#{key}"
+          @items << [ "#{base_pair} => #{value}" ]
+        else
+          make_keys(value, i+1, i == 0 ? key : "#{base}.#{key}")
         end
       end
     end
